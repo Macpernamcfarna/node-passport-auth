@@ -1,0 +1,66 @@
+Imports and Why They're Needed
+
+Files referenced are relative to the project root.
+
+1) app.js
+- express: web framework. Handles routes, middleware, server, and request/response handling.
+- express-ejs-layouts: EJS layout support for templating pages with a shared layout.
+- mongoose: MongoDB ODM. Connects to MongoDB, defines schemas/models, and queries data.
+- connect-flash: Express flash messaging middleware used for sending success/error messages.
+- express-session: Session middleware needed by Passport for login sessions.
+- passport: Main authentication library used to initialize auth and manage sessions.
+
+2) config/passport.js
+- passport-local: Local authentication strategy for username/password login.
+- mongoose: to query the `User` model inside the Passport strategy.
+- bcryptjs: compares submitted password with stored hashed password.
+- ../models/User: imports the `User` model to verify login credentials.
+
+3) config/keys.js
+- Exports MongoURI (connection string) used by mongoose to connect.
+
+4) models/User.js
+- mongoose: used here to build the `User` schema and model.
+
+5) routes/user.js
+- express: creates the router (`express.Router()`) and defines route handlers.
+- bcryptjs: hashes passwords before saving new users and compares passwords at login.
+- passport: authenticates login requests using the configured local strategy.
+- ../models/User: imports the `User` model so route handlers can check, create, and save users.
+
+6) routes/index.js
+- express: used to define route handlers and render views.
+- ../config/auth: imports the authentication guard used to protect the dashboard route.
+
+7) Views and middleware
+- EJS (via `app.set('view engine', 'ejs')`): templating engine for rendering .ejs templates.
+- express.urlencoded: built-in body parser to parse form POST data into `req.body`.
+- express-session + passport: maintain user login state across requests.
+- connect-flash: show one-time success/error messages after redirects.
+
+Why these imports matter
+- Routing & Views: `express` + EJS make the app respond to HTTP requests and render pages.
+- Persistence: `mongoose` + the `User` model persist user details to MongoDB.
+- Authentication: `passport`, `passport-local`, and sessions allow login/logout functionality.
+- Security: `bcryptjs` ensures plain passwords are never stored; instead a hash is saved.
+- Messaging: `connect-flash` lets the app display informative success/error messages to users.
+
+Notes & suggestions
+- Ensure `config/keys.js` has the correct MongoURI and no extra trailing spaces.
+- `routes/user.js` currently hashes and saves the user correctly, then redirects with a success flash message.
+- `config/auth.js` should call `req.isAuthenticated()` with parentheses, not `req.isAuthenticated`.
+- `routes/user.js` has a typo in the login failure redirect: it should be `/users/login` not `/Users/login`.
+
+Why you installed these modules
+- express: Provides the HTTP server, routing, and middleware system — the core of the app.
+- ejs: Lets you render dynamic HTML pages from templates (views).
+- express-ejs-layouts: Makes it easy to use shared layout templates across EJS views.
+- mongoose: Maps JavaScript objects to MongoDB documents and handles DB connection and queries.
+- bcryptjs: Hashes passwords so you never store plaintext passwords (security best practice).
+- connect-flash: Shows temporary flash messages after redirects.
+- express-session: Stores session state required for Passport login sessions.
+- passport: Manages authentication and session state.
+- passport-local: Handles email/password login strategy.
+- express.urlencoded: Parses form POST data into `req.body` so you can read submitted form fields.
+
+Tip: You installed these modules so your app can accept HTTP requests, render pages, accept form input, securely store users in a database, and support authentication with login sessions and flash messages.

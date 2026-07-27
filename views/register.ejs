@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+  <div class="col-lg-5 col-md-7 col-sm-9">
+    <div class="card shadow border-0 rounded-3">
+      <div class="card-body p-4 p-sm-5">
+        <!-- Header -->
+        <div class="text-center mb-4">
+          <div class="bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 56px; height: 56px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+              <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+              <path fill-rule="evenodd" d="M12.5 5a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2a.5.5 0 0 1 .5-.5"/>
+            </svg>
+          </div>
+          <h1 class="h3 fw-bold text-black mb-1">Create Account</h1>
+          <p class="text-black mb-0">Register to start using the app.</p>
+        </div>
+
+        <%- include("./partials/messages") %>
+
+        <!-- Form -->
+        <form action="/users/register" method="POST">
+          <div class="mb-3">
+            <label for="name" class="form-label text-black fw-semibold">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control form-control-lg text-black"
+              placeholder="Enter your name"
+              value="<%= typeof name != 'undefined' ? name : '' %>"
+              autocomplete="name"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label text-black fw-semibold">Email address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control form-control-lg text-black"
+              placeholder="you@example.com"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+              autocomplete="email"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label text-black fw-semibold">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control form-control-lg text-black"
+              placeholder="Create a password"
+              autocomplete="new-password"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="password2" class="form-label text-black fw-semibold">Confirm Password</label>
+            <input
+              type="password"
+              id="password2"
+              name="password2"
+              class="form-control form-control-lg text-black"
+              placeholder="Confirm your password"
+              autocomplete="new-password"
+            />
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg fw-semibold">Register</button>
+          </div>
+        </form>
+
+        <!-- Footer -->
+        <p class="text-center text-black mt-4 mb-0">
+          Already have an account? <a href="/users/login" class="text-black fw-bold text-decoration-underline">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
