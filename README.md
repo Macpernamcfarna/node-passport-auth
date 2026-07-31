@@ -36,6 +36,7 @@ A modern Node.js authentication starter built with Express, Passport, MongoDB, M
 npm install
 
 ```
+> ⚠️ **Important:** This project requires its node modules (dependencies) to be installed before it can run. The dependencies are **not** included in the repository, so you must install them first.
 
 
 
