@@ -6,6 +6,9 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
 module.exports = (passport) => {
+    // === LOCAL STRATEGY ===
+    // Sets up Passport to authenticate users using a username/email + password.
+    // 'usernameField: email' tells Passport that the login form's username input is named 'email'.
     passport.use(
         new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
             // MATCH USER
