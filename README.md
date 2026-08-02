@@ -26,7 +26,7 @@ A modern Node.js authentication starter built with Express, Passport, MongoDB, M
 
 1. **Clone the repository** (or download source files):
    ```bash
-   git clone [https://github.com/your-username/node-passport-login.git](https://github.com/your-username/node-passport-login.git)
+   git clone [https://github.com/Macpernamcfarna/node-passport-auth.git](https://github.com/Macpernamcfarna/node-passport-auth.git)
    cd node-passport-login
 
 ```
