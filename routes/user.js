@@ -56,12 +56,12 @@ router.post('/register', async (req, res) => {
     }
 
     // 3. Hash password and save new user
-    const newUser = new User({ name, email, password });
-    
-    const salt = await bcrypt.genSalt(10);
+    const newUser = new User({ name, email, password }); // creates a new user object
+        
+    const salt = await bcrypt.genSalt(10); // scrambles the password
     newUser.password = await bcrypt.hash(newUser.password, salt);
 
-    await newUser.save();
+    await newUser.save(); // <-- SAVES to the database
     
     // Redirect to login on success
     req.flash('success_msg', 'You are now registered and can log in');
